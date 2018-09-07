@@ -21,5 +21,5 @@ public class Pond {
 		yellowDucky.fly();
 		yellowDucky.quack();
 	}
-
+	
 }
