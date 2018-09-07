@@ -19,10 +19,6 @@ public class Question1 {
 				seen.add(i);
 			}		
 		}
-		return total;	
-
-		System.out.println("Hello");
-		return 0;	
-
+		return total;
 	}
 }
