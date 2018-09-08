@@ -1,6 +1,6 @@
 package edu.nd.se2018.homework.hwk2;
 
-import edu.nd.se2018.homework.hwk2.dog.types.*;
+import edu.nd.se2018.homework.hwk2.dogs.Dog;
 
 /**
  * Creates a new race and adds dogs to it
@@ -10,20 +10,45 @@ import edu.nd.se2018.homework.hwk2.dog.types.*;
 public class Race {
 	
 	public Race(){
-		Dog Max = new Bulldog();
-		Max.setStrategy();
 		
-		Dog Charlie = new Poodle();
-		Charlie.setStrategy();
+		Dog dog1 = new Dog("Max");
+		Dog dog2 = new Dog("Charlie");
+		Dog dog3 = new Dog("Buddy");
+		Dog dog4 = new Dog("Jack");
+		Dog dog5 = new Dog("Rocky");
 		
-		Dog Buddy = new Beagle();
-		Buddy.setStrategy();
 		
-		Dog Jack = new ShihTzu();
-		Jack.setStrategy();
-		
-		Dog Rocky = new Corgi();
-		Rocky.setStrategy();
+//		Dog Max = new EarlySprint();
+//		Max.setStrategy(new EarlySprint());
+//		Dog Charlie = new EarlySprint();
+//		Dog Buddy =  new SlowStart();
+//		Dog Jack =  new SteadyRun;
+//		Dog Rocky =  new SteadyRun();
+//		
+//		
+//		race.addDog("Buddy", 24, new SlowStart());
+//		race.addDog("Jack", 26, new SteadyRun());
+//		race.addDog("Rocky", 23, new SteadyRun());
+//		
+//		race.start();
+//		race.display();
+//		race.displayWinner();
+//		
+//		for (Dog dog : contestants) {
+//			race.startRace(dog);
+//		}
+//		
+//		for (Dog dog : contestants) {
+//			dog.startRace();
+//		}
+//		
+//		boolean winner = false;
+//		while (!winner) {
+//			for (Dog dog : contestants) {
+//				dog.display();
+//			}
+//		}
+//	
 		
 		//Add Horses
 		//each horse has a name and maximum speed
