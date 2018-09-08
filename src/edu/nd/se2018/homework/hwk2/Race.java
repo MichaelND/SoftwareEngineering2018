@@ -1,6 +1,9 @@
 package edu.nd.se2018.homework.hwk2;
 
+import java.util.List;
+import java.util.ArrayList;
 import edu.nd.se2018.homework.hwk2.dogs.Dog;
+import edu.nd.se2018.homework.hwk2.raceStrategies.*;
 
 /**
  * Creates a new race and adds dogs to it
@@ -10,60 +13,55 @@ import edu.nd.se2018.homework.hwk2.dogs.Dog;
 public class Race {
 	
 	public Race(){
-		
-		Dog dog1 = new Dog("Max");
-		Dog dog2 = new Dog("Charlie");
-		Dog dog3 = new Dog("Buddy");
-		Dog dog4 = new Dog("Jack");
-		Dog dog5 = new Dog("Rocky");
-		
-		
-//		Dog Max = new EarlySprint();
-//		Max.setStrategy(new EarlySprint());
-//		Dog Charlie = new EarlySprint();
-//		Dog Buddy =  new SlowStart();
-//		Dog Jack =  new SteadyRun;
-//		Dog Rocky =  new SteadyRun();
-//		
-//		
-//		race.addDog("Buddy", 24, new SlowStart());
-//		race.addDog("Jack", 26, new SteadyRun());
-//		race.addDog("Rocky", 23, new SteadyRun());
-//		
-//		race.start();
-//		race.display();
-//		race.displayWinner();
-//		
-//		for (Dog dog : contestants) {
-//			race.startRace(dog);
-//		}
-//		
-//		for (Dog dog : contestants) {
-//			dog.startRace();
-//		}
-//		
-//		boolean winner = false;
-//		while (!winner) {
-//			for (Dog dog : contestants) {
-//				dog.display();
-//			}
-//		}
-//	
-		
-		//Add Horses
-		//each horse has a name and maximum speed
-		//races are 10 miles
-		//three strategies
-		// early sprint
-		// - max speed for first 2 miles then 75%
-		// steady run
-		// - 80% of max speed for the whole time
-		// slow start
-		// - 75% for 6 miles, 90% for 3 miles, 100% for 1 mile
-		//Start Race
-		//Run Race
-		//Announce Winner
-		
-	}
+		List<Dog> contestants = new ArrayList<Dog>();
 
+		//Add Dogs to race and initialize strategy and max speed
+		Dog dog1 = new Dog("Max");
+		dog1.setRaceStrategy(new EarlySprint());
+		dog1.setMaxSpeed(10);
+		contestants.add(dog1);
+		
+		Dog dog2 = new Dog("Charlie");
+		dog2.setRaceStrategy(new SlowStart());
+		dog2.setMaxSpeed(10);
+		contestants.add(dog2);
+		
+		Dog dog3 = new Dog("Buddy");
+		dog3.setRaceStrategy(new SteadyRun());
+		dog3.setMaxSpeed(10);
+		contestants.add(dog3);
+		
+		Dog dog4 = new Dog("Jack");
+		dog4.setRaceStrategy(new SlowStart());
+		dog4.setMaxSpeed(10);
+		contestants.add(dog4);
+		
+		Dog dog5 = new Dog("Rocky");
+		dog5.setRaceStrategy(new EarlySprint());
+		dog5.setMaxSpeed(10);
+		contestants.add(dog5);
+		
+		//Start Race
+		System.out.println("Race Has Started!\n");
+		for (Dog dog : contestants) {
+			dog.startRace();
+		}
+		//Run Race
+		for (float i = 0; i <= 10; i++) {
+			for (Dog dog: contestants) {
+				dog.displayRace(i);
+			}
+			System.out.println("\n");
+		}
+		//Calculate and Announce Winner
+		float maxDistance = 0;
+		String winner = "";
+		for (Dog dog : contestants) { 
+			if (dog.getDistance() > maxDistance) {
+				maxDistance = dog.getDistance();
+				winner = dog.getName();
+			}
+		}
+		System.out.println("The Winner is " + winner);
+	}
 }

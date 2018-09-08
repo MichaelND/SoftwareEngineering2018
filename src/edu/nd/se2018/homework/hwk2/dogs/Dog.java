@@ -8,7 +8,7 @@ import edu.nd.se2018.homework.hwk2.raceStrategies.RaceStrategy;
  * @author Michael Wang
  *
  */
-public abstract class Dog extends Race{
+public class Dog {
 	RaceStrategy raceStrategy;
 	float maxSpeed;
 	float distanceRun;
@@ -22,22 +22,30 @@ public abstract class Dog extends Race{
 		return name;
 	}
 	
+	public float getDistance() {
+		return distanceRun;
+	}
+	
 	public RaceStrategy getStrategy() {
 		return raceStrategy;
 	}
 	
+	public void setMaxSpeed(float maxSpeed) {
+		this.maxSpeed = maxSpeed;
+	}
+	
 	public void startRace() {
-		distanceRun = 0;
+		this.distanceRun = 0;
 	}
 		
 	public void setRaceStrategy(RaceStrategy raceStrategy){
 		this.raceStrategy = raceStrategy;
 	}
 		
-	public void displayRace() {
-		float updateDistance = raceStrategy.runRace(distanceRun, maxSpeed);
+	public void displayRace(float currentDistance) {
+		float updateDistance = raceStrategy.runRace(currentDistance, maxSpeed);
 		System.out.println(this.name + " has run " + this.distanceRun);
-		this.distanceRun = updateDistance;
+		this.distanceRun = this.distanceRun + updateDistance;
 	}
 }
 
