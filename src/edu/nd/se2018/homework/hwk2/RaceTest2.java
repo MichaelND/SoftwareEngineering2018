@@ -36,7 +36,7 @@ public class RaceTest2 {
 		newrace.runRace(contestants);
 		assert(newrace.findWinner(contestants)=="Max"); //Higher speed dog wins
 		
-		//Both dogs are at the same speed using the steady run strategy
+		//Both dogs switch speeds using the steady run strategy
 		dog1.setMaxSpeed(13);
 		dog2.setMaxSpeed(14);
 		dog1.setRaceStrategy(new SteadyRun());
