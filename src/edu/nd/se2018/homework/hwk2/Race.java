@@ -36,7 +36,7 @@ public class Race {
 		System.out.print("The winner is " + newrace.findWinner(contestants) + "\n");	
 	}
 	
-	public Dog addDog(String name, int maxSpeed, RaceStrategy strategy) {
+	public Dog addDog(String name, float maxSpeed, RaceStrategy strategy) {
 		Dog dog = new Dog(name);
 		dog.setMaxSpeed(maxSpeed);
 		dog.setRaceStrategy(strategy);
@@ -49,7 +49,7 @@ public class Race {
 		}
 	}
 	public void runRace(List<Dog> dogs) {
-		for (float i = 0; i <= 10; i++) {
+		for (float i = 1; i <= 10; i++) {
 			for (Dog dog: dogs) {
 				dog.displayRace(i);
 			}
@@ -57,7 +57,7 @@ public class Race {
 		}
 	}
 	public String findWinner(List<Dog> dogs) {
-		float maxDistance = 0;
+		float maxDistance = -1;
 		String winner = "";
 		for (Dog dog : dogs) { 
 			if (dog.getDistance() > maxDistance) {

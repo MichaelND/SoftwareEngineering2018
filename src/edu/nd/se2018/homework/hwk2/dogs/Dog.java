@@ -43,8 +43,8 @@ public class Dog {
 		
 	public void displayRace(float currentDistance) {
 		float updateDistance = raceStrategy.runRace(currentDistance, maxSpeed);
-		System.out.println(this.name + " has run " + this.distanceRun);
 		this.distanceRun = this.distanceRun + updateDistance;
+		System.out.println(this.name + " has run " + this.distanceRun);
 	}
 }
 
