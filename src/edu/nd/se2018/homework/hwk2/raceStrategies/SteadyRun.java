@@ -4,7 +4,7 @@ public class SteadyRun implements RaceStrategy{
 
 	@Override
 	public float runRace(float distance, float speed) {
-		return (float) (speed * 0.80);
+		return (float) (speed * 0.8);
 	}
 
 }

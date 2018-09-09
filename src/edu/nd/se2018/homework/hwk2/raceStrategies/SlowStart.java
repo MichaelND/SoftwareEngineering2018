@@ -7,7 +7,7 @@ public class SlowStart implements RaceStrategy{
 		if (distance < 6)
 			return (float) (speed * 0.75);
 		else if (distance >= 6 && distance < 9)
-			return (float) (speed * 0.90);
+			return (float) (speed * 0.9);
 		else
 			return speed;
 	}

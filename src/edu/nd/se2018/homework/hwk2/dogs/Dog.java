@@ -1,10 +1,9 @@
 package edu.nd.se2018.homework.hwk2.dogs;
 
-import edu.nd.se2018.homework.hwk2.Race;
 import edu.nd.se2018.homework.hwk2.raceStrategies.RaceStrategy;
 
 /**
- * Creates the Dog base class
+ * Creates the Dog class
  * @author Michael Wang
  *
  */

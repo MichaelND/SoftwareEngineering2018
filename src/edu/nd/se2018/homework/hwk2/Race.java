@@ -6,62 +6,65 @@ import edu.nd.se2018.homework.hwk2.dogs.Dog;
 import edu.nd.se2018.homework.hwk2.raceStrategies.*;
 
 /**
- * Creates a new race and adds dogs to it
+ * Creates a new race of dogs and displays the winner
  * @author Michael Wang
  *
  */
 public class Race {
+	public Race() {}
 	
-	public Race(){
+	public void runSampleRace() {
+		Race newrace = new Race();
 		List<Dog> contestants = new ArrayList<Dog>();
 
+		
 		//Add Dogs to race and initialize strategy and max speed
-		Dog dog1 = new Dog("Max");
-		dog1.setRaceStrategy(new EarlySprint());
-		dog1.setMaxSpeed(10);
+		Dog dog1 = newrace.addDog("Max", 15, new EarlySprint());
+		Dog dog2 = newrace.addDog("Charlie", 14, new SlowStart());
+		Dog dog3 = newrace.addDog("Buddy", 15, new SteadyRun());
+		Dog dog4 = newrace.addDog("Jack", 13, new SlowStart());
+		Dog dog5 = newrace.addDog("Rocky", 14, new EarlySprint());
+
 		contestants.add(dog1);
-		
-		Dog dog2 = new Dog("Charlie");
-		dog2.setRaceStrategy(new SlowStart());
-		dog2.setMaxSpeed(10);
 		contestants.add(dog2);
-		
-		Dog dog3 = new Dog("Buddy");
-		dog3.setRaceStrategy(new SteadyRun());
-		dog3.setMaxSpeed(10);
 		contestants.add(dog3);
-		
-		Dog dog4 = new Dog("Jack");
-		dog4.setRaceStrategy(new SlowStart());
-		dog4.setMaxSpeed(10);
 		contestants.add(dog4);
-		
-		Dog dog5 = new Dog("Rocky");
-		dog5.setRaceStrategy(new EarlySprint());
-		dog5.setMaxSpeed(10);
 		contestants.add(dog5);
 		
-		//Start Race
+		newrace.startRace(contestants);
+		newrace.runRace(contestants);
+		System.out.print("The winner is " + newrace.findWinner(contestants) + "\n");	
+	}
+	
+	public Dog addDog(String name, int maxSpeed, RaceStrategy strategy) {
+		Dog dog = new Dog(name);
+		dog.setMaxSpeed(maxSpeed);
+		dog.setRaceStrategy(strategy);
+		return dog;
+	}
+	public void startRace(List<Dog> dogs) {
 		System.out.println("Race Has Started!\n");
-		for (Dog dog : contestants) {
+		for (Dog dog : dogs) {
 			dog.startRace();
 		}
-		//Run Race
+	}
+	public void runRace(List<Dog> dogs) {
 		for (float i = 0; i <= 10; i++) {
-			for (Dog dog: contestants) {
+			for (Dog dog: dogs) {
 				dog.displayRace(i);
 			}
 			System.out.println("\n");
 		}
-		//Calculate and Announce Winner
+	}
+	public String findWinner(List<Dog> dogs) {
 		float maxDistance = 0;
 		String winner = "";
-		for (Dog dog : contestants) { 
+		for (Dog dog : dogs) { 
 			if (dog.getDistance() > maxDistance) {
 				maxDistance = dog.getDistance();
 				winner = dog.getName();
 			}
 		}
-		System.out.println("The Winner is " + winner);
+		return winner;
 	}
 }
