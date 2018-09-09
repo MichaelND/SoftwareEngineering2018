@@ -16,7 +16,6 @@ public class Race {
 	public void runSampleRace() {
 		Race newrace = new Race();
 		List<Dog> contestants = new ArrayList<Dog>();
-
 		
 		//Add Dogs to race and initialize strategy and max speed
 		Dog dog1 = newrace.addDog("Max", 15, new EarlySprint());
@@ -31,6 +30,7 @@ public class Race {
 		contestants.add(dog4);
 		contestants.add(dog5);
 		
+		//Start, display, and print winner
 		newrace.startRace(contestants);
 		newrace.runRace(contestants);
 		System.out.print("The winner is " + newrace.findWinner(contestants) + "\n");	

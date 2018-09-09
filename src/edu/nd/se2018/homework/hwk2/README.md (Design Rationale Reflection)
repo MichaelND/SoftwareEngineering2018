@@ -1,0 +1,12 @@
+Michael Wang
+September 9, 2018
+Professor Huang
+Assignment 2 - OOP Strategy Design
+
+In this project, I utilized the strategy design to create a dog racing program.
+I have a main class which simply creates a race object and runs a sample race.
+In the race class, I have methods which adds dogs to the race, starts the race, displays each "mile" of the race represented as an iteration of a for loop, and announces the winner.
+I separated the dog class as well as made an interface for the racing strategy of each dog. This way, if I were to add different types of dogs or different animals I could easily do so, and if I wanted to add more racing strategies, I could easily do so in my racing interface.
+I have a dog class with methods that the racing class calls, and inside the dog class I use an interface for the different racing strategies a dog can have. This is convenient because if I were to add any other animals or types of dogs, they could all use the same interface for racing strategies. 
+In order to actually run the race, you simply have to create a race object which will then call addDog to add dogs to the race, store them in a list called contestants, and then use different methods of the race class to run the race for each of the dogs. The reason why I pass in a list of contestants of the Dog type to the race methods is because each dog has to run the race and display their distance run.
+By creating and then separating the dog class from the race class and race strategies to its own interface, I utilized the strategy design of OOP by seaparating out the parts of the program which could change because perhaps eventually I will want to add different types of animals or dogs or more racing strategies.
