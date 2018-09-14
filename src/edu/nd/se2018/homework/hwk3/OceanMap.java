@@ -8,16 +8,16 @@ import javafx.scene.shape.Rectangle;
 public class OceanMap {
 	int[][] oceanGrid = new int[25][25];
 	final int dimensions = 25;
-}
 
-public void drawMap(ObservableList<Node> root, int scale) {
-	for (int x = 0; x < dimensions; x++) {
-		for (int y = 0; y < dimensions; y++) {
-			Rectangle rect = new Rectangle(x*scale,y*scale,scale,scale);
-			rect.setStroke(Color.BLACK);
-			rect.setFill(Color.PALETURQUOISE);
-			root.add(rect);
-			oceanGrid[x][y] = 0;
+	public void drawMap(ObservableList<Node> root, int scale) {
+		for (int x = 0; x < dimensions; x++) {
+			for (int y = 0; y < dimensions; y++) {
+				Rectangle rect = new Rectangle(x*scale,y*scale,scale,scale);
+				rect.setStroke(Color.BLACK);
+				rect.setFill(Color.PALETURQUOISE);
+				root.add(rect);
+				oceanGrid[x][y] = 0;
+			}
 		}
 	}
 }
