@@ -1,4 +1,4 @@
-package application;
+package ColumbusGame;
 	
 import javafx.application.Application;
 import javafx.stage.Stage;
