@@ -9,15 +9,11 @@ import javafx.scene.layout.BorderPane;
 public class OceanExplorer extends Application {
 	@Override
 	public void start(Stage primaryStage) {
-		try {
-			BorderPane root = new BorderPane();
-			Scene scene = new Scene(root,400,400);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			primaryStage.setScene(scene);
-			primaryStage.show();
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
+		BorderPane root = new BorderPane();
+		Scene scene = new Scene(root,400,400);
+		primaryStage.setTitle("My Island");
+		primaryStage.setScene(scene);
+		primaryStage.show();
 	}
 	
 	public static void main(String[] args) {
