@@ -1,4 +1,4 @@
-package ColumbusGame;
+package edu.nd.se2018.homework.hwk3;
 
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
