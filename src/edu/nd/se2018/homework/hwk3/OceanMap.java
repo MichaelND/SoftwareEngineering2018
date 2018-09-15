@@ -7,26 +7,40 @@ import javafx.scene.Node;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
+/**
+ * Ocean map class 
+ * @author Michael
+ *
+ */
+
 public class OceanMap {
-	enum cellType {
-		WATER, ISLAND, PIRATE;
-	}
 	Random rand = new Random();
+	int[][] oceanGrid; 
 	
 	public void drawMap(ObservableList<Node> root, int scale, int dimensions, int islandCount) {
-		cellType[][] oceanGrid = new cellType[dimensions][dimensions];
+		oceanGrid = new int[dimensions][dimensions];
 		for (int x = 0; x < dimensions; x++) {
 			for (int y = 0; y < dimensions; y++) {
 				Rectangle rect = new Rectangle(x*scale,y*scale,scale,scale);
 				rect.setStroke(Color.BLACK);
 				rect.setFill(Color.PALETURQUOISE);
 				root.add(rect);
-				oceanGrid[x][y] = cellType.WATER;
+				oceanGrid[x][y] = 0; //0 represents water
 			}
 		}
 		
-		
-		
-		
+		for (int i = 0; i < islandCount; i++) {
+			int randx = rand.nextInt(dimensions);
+			int randy = rand.nextInt(dimensions);
+			while (oceanGrid[randx][randy] == 1) {
+				randx = rand.nextInt(dimensions);
+				randy = rand.nextInt(dimensions);
+			}
+			Rectangle rect = new Rectangle(randx*scale,randy*scale,scale,scale);
+			rect.setStroke(Color.BLACK);
+			rect.setFill(Color.FORESTGREEN);
+			root.add(rect);
+			oceanGrid[randx][randy] = 1; //1 represents island
+		}
 	}
 }
