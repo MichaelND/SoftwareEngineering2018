@@ -30,11 +30,11 @@ public class OceanMap {
 		}
 		
 		for (int i = 0; i < islandCount; i++) {
-			int randx = rand.nextInt(dimensions-1);
-			int randy = rand.nextInt(dimensions-1);
-			while (oceanGrid[randx][randy] == 1) { //find island that is not already on map
-				randx = rand.nextInt(dimensions-1);
-				randy = rand.nextInt(dimensions-1);
+			int randx = rand.nextInt(dimensions);
+			int randy = rand.nextInt(dimensions);
+			while (oceanGrid[randx][randy] == 1 || (randx == 12 && randy == 12)) { //find island that is not already on map
+				randx = rand.nextInt(dimensions);
+				randy = rand.nextInt(dimensions);
 			}
 			
 			//update

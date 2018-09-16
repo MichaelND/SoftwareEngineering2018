@@ -1,10 +1,9 @@
 package edu.nd.se2018.homework.hwk3;
 
 import java.awt.Point;
+import java.lang.Math;
 import java.util.Observable;
 import java.util.Observer;
-
-import java.lang.Math;
 import java.util.Random;
 
 import javafx.scene.image.Image;
@@ -35,11 +34,11 @@ public class Pirate implements Observer{
 		borderSize = size;
 		scale = borderSize / dimensions;
 		
-		int randx = rand.nextInt(dimensions-1);
-		int randy = rand.nextInt(dimensions-1);
-		while (oceanGrid[randx][randy] == 1 || oceanGrid[randx][randy] == 2) { //find island or pirate not on map
-			randx = rand.nextInt(dimensions-1);
-			randy = rand.nextInt(dimensions-1);
+		int randx = rand.nextInt(dimensions);
+		int randy = rand.nextInt(dimensions);
+		while (oceanGrid[randx][randy] == 1 || oceanGrid[randx][randy] == 2 || (randx == 12 && randy == 12)) { //find island or pirate not on map
+			randx = rand.nextInt(dimensions);
+			randy = rand.nextInt(dimensions);
 		}
 		oceanGrid[randx][randy] = 2;
 		pirateLocation = new Point(randx, randy);

@@ -2,11 +2,10 @@ package edu.nd.se2018.homework.hwk3;
 	
 import javafx.application.Application;
 import javafx.event.EventHandler;
-import javafx.stage.Stage;
-import javafx.scene.Scene;
-
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 import edu.nd.se2018.homework.hwk3.OceanMap;
 
@@ -24,15 +23,25 @@ public class OceanExplorer extends Application {
 	Pirate pirate;
 	
 	//Changeable factors
-	int islandCount = 50;
-	int pirateCount = 2;
-	int dimensions = 25;
-	int borderSize = 600;
+	int islandCount = 10; //default 10
+	int pirateCount = 2;  //default 2
+	int dimensions = 25;  //default 25
+	int borderSize = 600; //default 600
 	
 	int scale = borderSize / dimensions;
 	
 	@Override
 	public void start(Stage primaryStage) {
+		//Bounds check
+		if (islandCount > dimensions * dimensions - 1 - pirateCount) {
+			System.out.println("Too many Islands");
+			return;
+		}
+		else if (pirateCount > dimensions * dimensions - 1 - islandCount) {
+			System.out.println("Too many pirates");
+			return;
+		}
+		
 		//Create map
 		root = new BorderPane();
 		oceanMap = new OceanMap();
@@ -44,7 +53,7 @@ public class OceanExplorer extends Application {
 		ship.getImageView().setX(ship.getShipLocation().x * scale);
 		ship.getImageView().setY(ship.getShipLocation().y * scale);
 		root.getChildren().add(ship.shipImageView);
-				
+		
 		// Create pirates
 		for(int j = 0; j < pirateCount; j++) {
 			pirate = new Pirate(dimensions, borderSize, oceanMap.oceanGrid);
