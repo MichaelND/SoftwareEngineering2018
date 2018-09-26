@@ -5,12 +5,14 @@ import java.util.Collection;
 import java.util.Vector;
 
 import edu.nd.sarec.railwaycrossing.model.infrastructure.gate.CrossingGate;
+import edu.nd.sarec.railwaycrossing.model.vehicles.Car;
 import edu.nd.sarec.railwaycrossing.model.vehicles.CarFactory;
 
 /**
  * Represents a single road
  * @author jane
- *
+ * Added last car methods
+ * @Edited by Michael
  */
 public class Road {
 	private int startX;
@@ -22,6 +24,7 @@ public class Road {
 	Collection<CrossingGate> gates;
 	boolean clearEnds = false;
 	int roadSize;
+	Car lastCar;
 	
 	public Road(){}
 	
@@ -35,21 +38,26 @@ public class Road {
 		this.direction = direction;
 		gates = new Vector<CrossingGate>();
 		this.clearEnds = clearEnds;
-		
 	}
 	
+	public void setLastCar(Car car) {
+		this.lastCar = car;
+	}
+	public Car getLastCar() {
+		return lastCar;
+	}
 	// Adds a gate to a road
 	// In case a new gate is added after the factory is assigned, we reassign factory
 	// The factory needs to know all gates on the road in order to register each car as an observer.
-	public void assignGate(CrossingGate gate){
+	public void assignGate(CrossingGate gate, CarFactory opposite){
 		gates.add(gate);
 		if (carFactory != null)
-			carFactory = new CarFactory(direction, new Point(startX-roadSize/2,startY), gates);  // allows additional gates.  Needs fixing
+			carFactory = new CarFactory(direction, new Point(startX-roadSize/2,startY), gates, opposite);  // allows additional gates.  Needs fixing
 	}
 	
-	public void addCarFactory(){
+	public void addCarFactory(CarFactory opposite){
 		if (carFactory == null) // We only allow one
-			carFactory = new CarFactory(direction, new Point(startX-roadSize/2,startY), gates);
+			carFactory = new CarFactory(direction, new Point(startX-roadSize/2,startY), gates, opposite);
 	}
 	
 	public CarFactory getCarFactory(){

@@ -9,7 +9,8 @@ import edu.nd.sarec.railwaycrossing.model.infrastructure.gate.CrossingGate;
 /**
  * Creates all infrastructure for the simulation
  * @author jane
- *
+ * Added Additional Train and assigned roads to factories and gates
+ * @edited by Michael
  */
 public class MapBuilder {
 	HashMap<String, Road> roads;
@@ -30,7 +31,7 @@ public class MapBuilder {
 	private void buildRoads(){
 		roads.put("Western Highway",new Road(new Point(800,0),new Point (800,1000),Direction.SOUTH,true,false));
 		roads.put("Skyway",new Road(new Point(400,0),new Point (400,1000),Direction.SOUTH,true,false));		
-		roads.put("EastWest",new Road(new Point(415,800),new Point (785,800),Direction.EAST,true,true));	
+		roads.put("EastWest",new Road(new Point(415,200),new Point (785,200),Direction.EAST,true,true));
 	}
 	
 	private void buildCrossingGates(){
@@ -40,16 +41,20 @@ public class MapBuilder {
 	
 	private void buildTracks(){
 		tracks.put("Royal", new RailwayTracks(new Point(0,500),new Point(1200,500)));
+		tracks.put("Royal2", new RailwayTracks(new Point(0,530),new Point(1200,530)));
 	}
 	
 	private void assignGatesToRoads(){
-		roads.get("Western Highway").assignGate(gates.get("Gate1"));
-		roads.get("Skyway").assignGate(gates.get("Gate2"));
+		//Have roads assigned to gate
+		roads.get("Western Highway").assignGate(gates.get("Gate1"), roads.get("Western Highway").getCarFactory());
+		roads.get("Skyway").assignGate(gates.get("Gate2"), roads.get("Skyway").getCarFactory());
 	}
 	
 	private void buildCarFactories(){
-		roads.get("Western Highway").addCarFactory();
-		roads.get("Skyway").addCarFactory();
+		//Have roads assigned to car factory
+		//sky way must come first because only one car factory after car leaves junction will be assigned to western road
+		roads.get("Skyway").addCarFactory(roads.get("Western Highway").getCarFactory());
+		roads.get("Western Highway").addCarFactory(roads.get("Skyway").getCarFactory());
 	}
 	
 	public Collection<CrossingGate> getAllGates(){
@@ -65,6 +70,6 @@ public class MapBuilder {
 	}
 	
 	public RailwayTracks getTrack(String name){
-		return tracks.get("Royal");
+		return tracks.get(name);
 	}
 }

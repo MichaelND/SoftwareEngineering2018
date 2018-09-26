@@ -11,7 +11,8 @@ import javafx.scene.shape.Line;
 /**
  * Context class for Crossing Gate
  * @author jane
- *
+ * Added functionality to multiple trains and tracks
+ * @edited by Michael
  */
 public class CrossingGate extends Observable implements Observer{
 	
@@ -65,6 +66,10 @@ public class CrossingGate extends Observable implements Observer{
 		currentGateState.operate();
 	}
 	
+	public String getGateName() {
+		return gateName;
+	}
+	
 	public void close(){
 		if (movingY<anchorY){		
 		    movingX+=1;
@@ -77,6 +82,7 @@ public class CrossingGate extends Observable implements Observer{
 			currentGateState.gateFinishedOpening();
 		}
 	}
+	
 	
 	public void open(){
 		if (movingX>anchorX){
@@ -119,11 +125,22 @@ public class CrossingGate extends Observable implements Observer{
 	public void update(Observable o, Object arg) {
 		if (o instanceof Train){
 			Train train = (Train)o;
-			if (train.getVehicleX() < exitPoint)
-				currentGateState.leaveStation();
-			else if(train.getVehicleX() < triggerPoint){
-				currentGateState.approachStation();
-			} 
+			if (train.getMoveDirection() < 0) { // train is approaching from east to west and no west to east train is crossing
+				if (train.getVehicleX() < triggerPoint && train.getVehicleX() > exitPoint) {
+					currentGateState.approachStation();
+				}
+				else if (train.getVehicleX() < exitPoint && (train.getEastBoundTrainX() > triggerPoint || train.getEastBoundTrainX() < exitPoint)) {
+					currentGateState.leaveStation();
+				}
+			}
+			else if (train.getMoveDirection() > 0) { // train is approaching from west to east and no east to west train is crossing
+				if (train.getVehicleX() > exitPoint && train.getVehicleX() < triggerPoint) {
+					currentGateState.approachStation();
+				}
+				else if (train.getVehicleX() > triggerPoint && (train.getWestBoundTrainX() < exitPoint || train.getWestBoundTrainX() > triggerPoint)) {
+					currentGateState.leaveStation();
+				}
+			}
 		}	
 	}
 }

@@ -10,4 +10,5 @@ public interface IVehicle {
 	public void move();
 	public boolean offScreen();
 	public void reset();
+	public void setMoveDirection(String direction);
 }
