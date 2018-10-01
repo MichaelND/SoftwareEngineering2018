@@ -42,8 +42,8 @@ public class Pirate implements Observer{
 		}
 		oceanGrid[randx][randy] = 2;
 		pirateLocation = new Point(randx, randy);
-//		pirateImage = new Image("images//PirateShip.png",scale,scale,true,true);
-		pirateImage = new Image("file:///Users/MichaelWang/Documents/GitHub/SoftwareEngineering2018/src/images/PirateShip.png",scale,scale,true,true);	
+		pirateImage = new Image("images//PirateShip.png",scale,scale,true,true);
+//		pirateImage = new Image("file:///Users/MichaelWang/Documents/GitHub/SoftwareEngineering2018/src/images/PirateShip.png",scale,scale,true,true);	
 		pirateImageView = new ImageView(pirateImage);
 		
 	}
