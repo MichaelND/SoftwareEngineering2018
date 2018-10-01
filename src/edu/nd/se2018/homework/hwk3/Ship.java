@@ -28,7 +28,8 @@ public class Ship extends Observable{
 		borderSize = size;
 		scale = borderSize / dimensions;
 		currentLocation = new Point(12,12);
-		shipImage = new Image("file:///Users/MichaelWang/Documents/GitHub/SoftwareEngineering2018/src/images/ColumbusShip.png",scale,scale,true,true);
+		shipImage = new Image("images//ColumbusShip.png",scale,scale,true,true);
+//		shipImage = new Image("file:///Users/MichaelWang/Documents/GitHub/SoftwareEngineering2018/src/images/ColumbusShip.png",scale,scale,true,true);
 		shipImageView = new ImageView(shipImage);
 	}
 
