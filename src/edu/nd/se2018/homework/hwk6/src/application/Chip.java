@@ -28,7 +28,7 @@ public class Chip extends Observable{
 		borderSize = size;
 		scale = borderSize / dimensions;
 		currentLocation = new Point(12,12);
-//		chipImage = new Image("images//ColumbusShip.png",scale,scale,true,true);
+		chipImage = new Image("images//chip//textures//chipDown.png",scale,scale,true,true);
 		chipImageView = new ImageView(chipImage);
 	}
 

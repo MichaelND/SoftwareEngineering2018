@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry excluding="edu/nd/se2018/homework/hwk6/src/" kind="src" path=""/>
+	<classpathentry kind="src" path="edu/nd/se2018/homework/hwk6/src"/>
+	<classpathentry kind="output" path="edu/nd/se2018/homework/hwk6/bin"/>
+</classpath>
