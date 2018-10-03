@@ -36,6 +36,18 @@ public class Chip extends Observable{
 		return chipImageView;
 	}
 	
+	public void setImageView(String direction) {
+		if (direction == "East")
+			chipImage = new Image("images//chip//textures//chipRight.png",scale,scale,true,true);
+		else if (direction == "West")
+			chipImage = new Image("images//chip//textures//chipLeft.png",scale,scale,true,true);
+		else if (direction == "North")
+			chipImage = new Image("images//chip//textures//chipUp.png",scale,scale,true,true);
+		else if (direction == "South")
+			chipImage = new Image("images//chip//textures//chipDown.png",scale,scale,true,true);
+		chipImageView.setImage(chipImage);
+	}
+	
 	public Point getChipLocation() {
 		return currentLocation;
 	}
