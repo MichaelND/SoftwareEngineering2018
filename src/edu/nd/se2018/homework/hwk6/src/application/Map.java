@@ -2,7 +2,6 @@ package application;
 
 import java.util.Random;
 
-import src.edu.nd.se2018.homework.hwk6.src.levels.level1;
 import src.edu.nd.se2018.homework.hwk6.src.levels.levelStrategy;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;

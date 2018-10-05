@@ -17,8 +17,10 @@ public class Main extends Application {
 	Map map;
 	Scene scene;
 	Chip chip;
+	Backpack backpack;
 	int[][] mapGrid;
 	
+	int keyCount = 1;
 	int chipCount = 10; 
 	int dimensions = 25; 
 	int borderSize = 600;
@@ -27,18 +29,18 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		//Bounds check
-//		if (keyCount > 1) {
-//			Alert error = new Alert(AlertType.ERROR);
-//			error.setContentText("keyCount must be less than 6!");
-//			error.showAndWait();
-//		}
+		if (keyCount > 1) {
+			Alert error = new Alert(AlertType.ERROR);
+			error.setContentText("keyCount must be 1!");
+			error.showAndWait();
+		}
 		
 		//Create map
 		root = new BorderPane();
 		map = new Map();
 		map.drawMap(root.getChildren(), scale, dimensions);
 		map.setLevelStrategy(new level1());
-		mapGrid = map.createMap(1, chipCount, root.getChildren(), scale, dimensions); //Specify number of keys and chips (keys must be less than 7)
+		mapGrid = map.createMap(keyCount, chipCount, root.getChildren(), scale, dimensions); //Specify number of keys and chips (keys must be less than 7)
 		scene = new Scene(root,borderSize,borderSize);
 		
 		//Create chip
@@ -46,6 +48,10 @@ public class Main extends Application {
 		chip.getImageView().setX(chip.getChipLocation().x * scale);
 		chip.getImageView().setY(chip.getChipLocation().y * scale);
 		root.getChildren().add(chip.chipImageView);
+		
+		//Create backpack
+		backpack = new Backpack();
+		chip.addObserver(backpack);
 		
 		primaryStage.setTitle("Chip's Challenge");
 		primaryStage.setScene(scene);
@@ -84,7 +90,7 @@ public class Main extends Application {
 				chip.getImageView().setX(chip.getChipLocation().x * scale);
 				chip.getImageView().setY(chip.getChipLocation().y * scale);
 				
-//				chip.notifyObservers();
+				chip.notifyObservers();
 			}
 		});
 	}

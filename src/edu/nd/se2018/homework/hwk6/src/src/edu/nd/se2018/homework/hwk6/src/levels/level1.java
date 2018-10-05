@@ -27,10 +27,10 @@ public class level1 implements levelStrategy{
 			int keyColor = randomKeyColor.nextInt(5) + 2;
 			int keyX = randomKey.nextInt(15) + 5; // Generate random key position
 			int keyY = randomKey.nextInt(16) + 4;
-			while (mapGrid[keyX][keyY] >= 2 && mapGrid[keyX][keyY] <= 5) {	  // Tile is already a key
-				keyX = randomKey.nextInt(15) + 5; // Generate random key position
-				keyY = randomKey.nextInt(16) + 4;
-			}
+//			while (mapGrid[keyX][keyY] >= 2 && mapGrid[keyX][keyY] <= 5) {	  // Tile is already a key
+//				keyX = randomKey.nextInt(15) + 5; // Generate random key position
+//				keyY = randomKey.nextInt(16) + 4;
+//			}
 			
 			// Select color of key and wall
 			if (keyColor == 2) { // Blue
@@ -47,12 +47,13 @@ public class level1 implements levelStrategy{
 			}
 			else if (keyColor == 5) { // Red
 				keyImage = new Image("images//chip//textures//redKey.png");
-				wallImage = new Image("images//chip//textures/redKeyWall.png");
+				wallImage = new Image("images//chip//textures//redKeyWall.png");
 			}
 			mapGrid[keyX][keyY] = keyColor;
 			
 			Rectangle key = new Rectangle(keyX*scale,keyY*scale,scale,scale);
 			Rectangle wall = new Rectangle(12*scale,3*scale,scale,scale); // Change keyX and keyY
+			mapGrid[12][3] = 7; // 7 for keyWall
 			
 			key.setFill(new ImagePattern(keyImage));
 			wall.setFill(new ImagePattern(wallImage));
@@ -68,13 +69,13 @@ public class level1 implements levelStrategy{
 			Random randomKey = new Random();
 			int chipX = randomKey.nextInt(15) + 5; // Generate random chip position
 			int chipY = randomKey.nextInt(16) + 4;
-			while (mapGrid[chipX][chipY] >= 2 || mapGrid[chipX][chipY] <= 7) {	  // Tile is already a chip or key
+			while (mapGrid[chipX][chipY] >= 2 && mapGrid[chipX][chipY] <= 6) {	  // Tile is already a chip or key
 				chipX = randomKey.nextInt(15) + 5; // Generate random chip position
 				chipY = randomKey.nextInt(16) + 4;
 			}
 			
 			Rectangle chip = new Rectangle(chipX*scale,chipY*scale,scale,scale);
-			mapGrid[chipX][chipY] = 7;
+			mapGrid[chipX][chipY] = 6; // 6 for chip
 			chipItemImage = new Image("images//chip//textures//chipItem.png");
 			chip.setFill(new ImagePattern(chipItemImage));
 			chip.setStroke(Color.BLACK);
@@ -88,6 +89,7 @@ public class level1 implements levelStrategy{
 		portalImage = new Image("images//chip//textures//portal.png");
 		portal.setFill(new ImagePattern(portalImage));
 		portal.setStroke(Color.BLACK);
+		mapGrid[12][2] = 8; // 8 for portal
 		root.add(portal);
 		
 		return mapGrid;
