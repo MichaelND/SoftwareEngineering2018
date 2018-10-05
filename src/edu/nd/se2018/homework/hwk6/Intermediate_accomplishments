@@ -1,0 +1,11 @@
+Michael Wang
+October 2, 2018
+
+This is my first update on the Chip's Challenge game. Here are some of the features I have implemented so far and are in progress.
+- Basic map tiles and blocks
+- Chip's movement with updated images
+- Random key position and color generation specified by user input in initial level 1 map
+- Creation of level strategy interface with 2 levels
+- Working on creating doors and exit for level 1
+- Working on being able to store which keys are picked up which corresponds to what door
+- Working on creating chips
