@@ -6,6 +6,8 @@ import javafx.stage.Stage;
 import src.edu.nd.se2018.homework.hwk6.src.levels.level1;
 import src.edu.nd.se2018.homework.hwk6.src.levels.level2;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 
@@ -17,23 +19,18 @@ public class Main extends Application {
 	Chip chip;
 	int[][] mapGrid;
 	
-	//Changeable factors
-//	int islandCount = 10; //default 10
-	int dimensions = 25;  //default 25
-	int borderSize = 600; //default 600
-	
+	int chipCount = 10; 
+	int dimensions = 25; 
+	int borderSize = 600;
 	int scale = borderSize / dimensions;
 	
 	@Override
 	public void start(Stage primaryStage) {
-//		//Bounds check
-//		if (islandCount > dimensions * dimensions - 1 - pirateCount) {
-//			System.out.println("Too many Islands");
-//			return;
-//		}
-//		else if (pirateCount > dimensions * dimensions - 1 - islandCount) {
-//			System.out.println("Too many pirates");
-//			return;
+		//Bounds check
+//		if (keyCount > 1) {
+//			Alert error = new Alert(AlertType.ERROR);
+//			error.setContentText("keyCount must be less than 6!");
+//			error.showAndWait();
 //		}
 		
 		//Create map
@@ -41,7 +38,7 @@ public class Main extends Application {
 		map = new Map();
 		map.drawMap(root.getChildren(), scale, dimensions);
 		map.setLevelStrategy(new level1());
-		mapGrid = map.createMap(6, 6, root.getChildren(), scale, dimensions); //Specify number of keys and chips (keys must be less than 7)
+		mapGrid = map.createMap(1, chipCount, root.getChildren(), scale, dimensions); //Specify number of keys and chips (keys must be less than 7)
 		scene = new Scene(root,borderSize,borderSize);
 		
 		//Create chip
@@ -49,15 +46,6 @@ public class Main extends Application {
 		chip.getImageView().setX(chip.getChipLocation().x * scale);
 		chip.getImageView().setY(chip.getChipLocation().y * scale);
 		root.getChildren().add(chip.chipImageView);
-		
-//		// Create pirates
-//		for(int j = 0; j < pirateCount; j++) {
-//			pirate = new Pirate(dimensions, borderSize, oceanMap.oceanGrid);
-//			pirate.getImageView().setX(pirate.getPirateLocation().x * scale);
-//			pirate.getImageView().setY(pirate.getPirateLocation().y * scale);
-//			root.getChildren().add(pirate.pirateImageView);
-//			ship.addObserver(pirate);
-//		}
 		
 		primaryStage.setTitle("Chip's Challenge");
 		primaryStage.setScene(scene);

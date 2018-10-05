@@ -34,7 +34,7 @@ public class Map {
 		for (int x = 0; x < dimensions; x++) {
 			for (int y = 0; y < dimensions; y++) {
 				Rectangle rect = new Rectangle(x*scale,y*scale,scale,scale);
-				if (x == 4 || y == 3 ||  x == 20 || y == 21 || y == 12 && x <= 4 || y == 12 && x >= 20) {
+				if (x == 4 || y == 3 ||  x == 20 || y == 21 || y == 12 && x <= 4 || y == 12 && x >= 20 || x == 12 && y >= 21) {
 					rect.setFill(Color.GRAY);
 					mapGrid[x][y] = 1; //1 represents border
 				}
