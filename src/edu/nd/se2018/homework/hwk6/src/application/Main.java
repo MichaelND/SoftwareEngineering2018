@@ -11,6 +11,12 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 
+/**
+ * Main class that starts the program
+ * @author Michael
+ *
+ */
+
 
 public class Main extends Application {
 	BorderPane root;
@@ -50,7 +56,7 @@ public class Main extends Application {
 		root.getChildren().add(chip.chipImageView);
 		
 		//Create backpack
-		backpack = new Backpack();
+		backpack = new Backpack(chipCount);
 		chip.addObserver(backpack);
 		
 		primaryStage.setTitle("Chip's Challenge");
@@ -89,7 +95,6 @@ public class Main extends Application {
 				}
 				chip.getImageView().setX(chip.getChipLocation().x * scale);
 				chip.getImageView().setY(chip.getChipLocation().y * scale);
-				
 				chip.notifyObservers();
 			}
 		});

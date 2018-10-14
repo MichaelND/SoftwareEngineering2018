@@ -9,6 +9,12 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
+/**
+ * Level one class
+ * @author Michael
+ *
+ */
+
 public class level1 implements levelStrategy{
 	Image tileImage;
 	Image keyImage;
@@ -24,7 +30,8 @@ public class level1 implements levelStrategy{
 			Random randomKey = new Random();
 			Random randomKeyColor = new Random();
 			
-			int keyColor = randomKeyColor.nextInt(5) + 2;
+			int keyColor = randomKeyColor.nextInt(4) + 2;
+			System.out.println(keyColor);
 			int keyX = randomKey.nextInt(15) + 5; // Generate random key position
 			int keyY = randomKey.nextInt(16) + 4;
 //			while (mapGrid[keyX][keyY] >= 2 && mapGrid[keyX][keyY] <= 5) {	  // Tile is already a key
@@ -35,25 +42,28 @@ public class level1 implements levelStrategy{
 			// Select color of key and wall
 			if (keyColor == 2) { // Blue
 				keyImage = new Image("images//chip//textures//blueKey.png");
-				wallImage = new Image("images//chip//textures/blueKeyWall.png");
+				wallImage = new Image("images//chip//textures//blueKeyWall.png");
+				mapGrid[12][3] = 8; // 8 for BlueKeyWall
 			}
 			else if (keyColor == 3) { // Green
 				keyImage = new Image("images//chip//textures//greenKey.png");
-				wallImage = new Image("images//chip//textures/greenKeyWall.png");
+				wallImage = new Image("images//chip//textures//greenKeyWall.png");
+				mapGrid[12][3] = 9; // 9 for GreenKeyWall
 			}
 			else if (keyColor == 4) { // Yellow
 				keyImage = new Image("images//chip//textures//yellowKey.png");
-				wallImage = new Image("images//chip//textures/yellowKeyWall.png");
+				wallImage = new Image("images//chip//textures//yellowKeyWall.png");
+				mapGrid[12][3] = 10; // 10 for YellowKeyWall
 			}
 			else if (keyColor == 5) { // Red
 				keyImage = new Image("images//chip//textures//redKey.png");
 				wallImage = new Image("images//chip//textures//redKeyWall.png");
+				mapGrid[12][3] = 11; // 11 for RedKeyWall
 			}
 			mapGrid[keyX][keyY] = keyColor;
 			
 			Rectangle key = new Rectangle(keyX*scale,keyY*scale,scale,scale);
 			Rectangle wall = new Rectangle(12*scale,3*scale,scale,scale); // Change keyX and keyY
-			mapGrid[12][3] = 7; // 7 for keyWall
 			
 			key.setFill(new ImagePattern(keyImage));
 			wall.setFill(new ImagePattern(wallImage));
@@ -89,7 +99,7 @@ public class level1 implements levelStrategy{
 		portalImage = new Image("images//chip//textures//portal.png");
 		portal.setFill(new ImagePattern(portalImage));
 		portal.setStroke(Color.BLACK);
-		mapGrid[12][2] = 8; // 8 for portal
+		mapGrid[12][2] = 7; // 7 for portal
 		root.add(portal);
 		
 		return mapGrid;
