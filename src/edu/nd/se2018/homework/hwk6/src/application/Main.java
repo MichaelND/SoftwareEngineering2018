@@ -58,6 +58,7 @@ public class Main extends Application {
 		//Create backpack
 		backpack = new Backpack(chipCount);
 		chip.addObserver(backpack);
+		backpack.addObserver(map);
 		
 		primaryStage.setTitle("Chip's Challenge");
 		primaryStage.setScene(scene);
@@ -95,7 +96,9 @@ public class Main extends Application {
 				}
 				chip.getImageView().setX(chip.getChipLocation().x * scale);
 				chip.getImageView().setY(chip.getChipLocation().y * scale);
+				System.out.println("chip move");
 				chip.notifyObservers();
+//				Back)pack.updateBackpack();
 			}
 		});
 	}

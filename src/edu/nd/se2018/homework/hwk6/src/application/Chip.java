@@ -53,17 +53,21 @@ public class Chip extends Observable{
 		return mapGrid;
 	}
 	
-	public void setMapGrid(int x, int y, int val) {
+	public void itemPickUp(int x, int y, int val) {
+		System.out.println("item pick up");
 		mapGrid[x][y] = val;
+		setChanged(); //Map observes when chip moves to a tile
+		notifyObservers();
 	}
 	
 	public Point getChipLocation() {
 		return currentLocation;
 	}
+
 	public void setOldLocation() {
 		currentLocation = prevLocation;
 	}
-		
+	
 	public void goEast() {
 		if (currentLocation.x < dimensions - 1) { //check bounds
 			if (mapGrid[currentLocation.x + 1][currentLocation.y] != 1) { //check wall

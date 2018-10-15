@@ -31,7 +31,6 @@ public class level1 implements levelStrategy{
 			Random randomKeyColor = new Random();
 			
 			int keyColor = randomKeyColor.nextInt(4) + 2;
-			System.out.println(keyColor);
 			int keyX = randomKey.nextInt(15) + 5; // Generate random key position
 			int keyY = randomKey.nextInt(16) + 4;
 //			while (mapGrid[keyX][keyY] >= 2 && mapGrid[keyX][keyY] <= 5) {	  // Tile is already a key
@@ -90,7 +89,6 @@ public class level1 implements levelStrategy{
 			chip.setFill(new ImagePattern(chipItemImage));
 			chip.setStroke(Color.BLACK);
 			root.add(chip);
-			
 			chipCount -= 1;
 		}
 		
