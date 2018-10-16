@@ -7,8 +7,6 @@ import src.edu.nd.se2018.homework.hwk6.src.levels.level1;
 import src.edu.nd.se2018.homework.hwk6.src.levels.level2;
 import src.edu.nd.se2018.homework.hwk6.src.levels.levelStrategy;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 
@@ -34,14 +32,14 @@ public class Main extends Application {
 	@Override
 	public void start(Stage Stage1) {
 		// Create level 1
-		createMap(new level1(), Stage1, 1, 12, 12);
+		createGame(new level1(), Stage1, 1, 12, 12);
 	}
 	
 	public static void main(String[] args) {
 		launch(args);
 	}
 	
-	public void createMap(levelStrategy level, Stage stage, int lvl, int chipStartx, int chipStarty) {
+	public void createGame(levelStrategy level, Stage stage, int lvl, int chipStartx, int chipStarty) {
 		root = new BorderPane();
 		map = new Map(root.getChildren(), scale, dimensions);
 		map.setLevelStrategy(level);
@@ -107,7 +105,7 @@ public class Main extends Application {
 					Stage sb = (Stage)scene.getWindow();//use any one object
 					root.getChildren().clear();
 					sb.close();
-					createMap(new level2(), Stage2, 2, 3, 20);
+					createGame(new level2(), Stage2, 2, 3, 20);
 				}
 			}
 		});
