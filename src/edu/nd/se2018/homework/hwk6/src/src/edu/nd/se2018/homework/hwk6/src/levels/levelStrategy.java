@@ -4,5 +4,5 @@ import javafx.collections.ObservableList;
 import javafx.scene.Node;
 
 public interface levelStrategy {
-	public int[][] createMap(int keyCount, int chipCount, int[][] mapGrid, ObservableList<Node> root, int scale, int dimensions);
+	public int[][] createMap(int chipCount, int[][] mapGrid, ObservableList<Node> root, int scale, int dimensions);
 }

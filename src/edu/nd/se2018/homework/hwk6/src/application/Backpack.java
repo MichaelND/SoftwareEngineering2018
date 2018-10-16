@@ -8,7 +8,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
 /**
- * Backpack class
+ * Backpack class which observers chip to see if there is an item to add to backpack
+ * Map observers backpack to update the tile
  * @author Michael
  *
  */
@@ -18,6 +19,7 @@ public class Backpack extends Observable implements Observer{
 	int keys;
 	int chipCount;
 	boolean canEnter;
+	boolean winLevel;
 	
 	Point chipLocation;
 	
@@ -26,11 +28,7 @@ public class Backpack extends Observable implements Observer{
 		totalChips = 0;
 		keys = 0;
 		canEnter = false;
-	}
-	public void empty() {
-		totalChips = 0;
-		keys = 0;
-		canEnter = false;
+		winLevel = false;
 	}
 	
 	@Override
@@ -43,7 +41,7 @@ public class Backpack extends Observable implements Observer{
 	private void updateBackpack(Observable o, int[][] grid) {
 		int pos = grid[chipLocation.x][chipLocation.y];
 		
-		if (pos >= 2 && pos <= 6) {
+		if (pos >= 2 && pos <= 6) { // Handle pick up item or key
 			if (pos >= 2 && pos <= 5) 
 				keys += 1;
 			else
@@ -58,6 +56,7 @@ public class Backpack extends Observable implements Observer{
 	        alert.setHeaderText("Congrats!");
 	        alert.setContentText("Good Job!");
 	        alert.showAndWait();
+	        winLevel = true;
 		}
 		
 		if (totalChips >= 10 && keys >= 1)
