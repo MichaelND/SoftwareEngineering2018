@@ -3,6 +3,7 @@ package application;
 
 import java.awt.Point;
 import java.util.Observable;
+
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -14,7 +15,6 @@ import javafx.scene.image.ImageView;
 
 public class Chip extends Observable{
 	Point currentLocation;
-	Point prevLocation;
 	int dimensions;
 	int borderSize;
 	int scale;
@@ -22,8 +22,9 @@ public class Chip extends Observable{
 
 	Image chipImage;
 	ImageView chipImageView;
-		
-	public Chip(int d, int size, int[][] grid) {
+	Backpack backpack;
+	
+	public Chip(int d, int size, int[][] grid, Backpack pack) {
 		mapGrid = grid;
 		dimensions = d;
 		borderSize = size;
@@ -31,6 +32,7 @@ public class Chip extends Observable{
 		currentLocation = new Point(12,12);
 		chipImage = new Image("images//chip//textures//chipDown.png",scale,scale,true,true);
 		chipImageView = new ImageView(chipImage);
+		backpack = pack;
 	}
 
 	public ImageView getImageView(){
@@ -53,7 +55,7 @@ public class Chip extends Observable{
 		return mapGrid;
 	}
 	
-	public void itemPickUp(int x, int y, int val) {
+	public void clearTile(int x, int y, int val) {
 		System.out.println("item pick up");
 		mapGrid[x][y] = val;
 		setChanged(); //Map observes when chip moves to a tile
@@ -63,15 +65,10 @@ public class Chip extends Observable{
 	public Point getChipLocation() {
 		return currentLocation;
 	}
-
-	public void setOldLocation() {
-		currentLocation = prevLocation;
-	}
 	
 	public void goEast() {
 		if (currentLocation.x < dimensions - 1) { //check bounds
 			if (mapGrid[currentLocation.x + 1][currentLocation.y] != 1) { //check wall
-				prevLocation = currentLocation;
 				currentLocation.x++;
 			}
 		}
@@ -80,17 +77,20 @@ public class Chip extends Observable{
 	public void goWest() {
 		if (currentLocation.x > 0) {
 			if (mapGrid[currentLocation.x - 1][currentLocation.y] != 1) {
-				prevLocation = currentLocation;
 				currentLocation.x--;
 			}
 		}
 		setChanged();
 	}
 	public void goNorth() {
-		if (currentLocation.y > 0) {			
-			if (mapGrid[currentLocation.x][currentLocation.y - 1] != 1) {
-				prevLocation = currentLocation;
+		int x = currentLocation.x;
+		int y = currentLocation.y;
+		if (y > 0) {			
+			if (mapGrid[x][y - 1] != 1) {
 				currentLocation.y--;
+				if (mapGrid[x][y - 1] >= 8 && mapGrid[x][y - 1] <= 11 && !backpack.canEnter) {
+					currentLocation.y++;
+				}
 			}
 		}
 		setChanged();
@@ -98,11 +98,9 @@ public class Chip extends Observable{
 	public void goSouth() {
 		if (currentLocation.y < dimensions - 1) {
 			if (mapGrid[currentLocation.x][currentLocation.y + 1] != 1) {
-				prevLocation = currentLocation;
 				currentLocation.y++;
 			}
 		}
 		setChanged();
-
 	}
 }

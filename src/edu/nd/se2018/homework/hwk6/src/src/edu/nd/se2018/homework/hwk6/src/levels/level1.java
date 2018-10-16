@@ -16,7 +16,6 @@ import javafx.scene.shape.Rectangle;
  */
 
 public class level1 implements levelStrategy{
-	Image tileImage;
 	Image keyImage;
 	Image wallImage;
 	Image portalImage;
@@ -24,7 +23,6 @@ public class level1 implements levelStrategy{
 	
 	@Override
 	public int[][] createMap(int keyCount, int chipCount, int[][] mapGrid, ObservableList<Node> root, int scale, int dimensions) {
-		
 		// Create Keys and Walls
 		while (keyCount != 0) {
 			Random randomKey = new Random();
@@ -33,10 +31,6 @@ public class level1 implements levelStrategy{
 			int keyColor = randomKeyColor.nextInt(4) + 2;
 			int keyX = randomKey.nextInt(15) + 5; // Generate random key position
 			int keyY = randomKey.nextInt(16) + 4;
-//			while (mapGrid[keyX][keyY] >= 2 && mapGrid[keyX][keyY] <= 5) {	  // Tile is already a key
-//				keyX = randomKey.nextInt(15) + 5; // Generate random key position
-//				keyY = randomKey.nextInt(16) + 4;
-//			}
 			
 			// Select color of key and wall
 			if (keyColor == 2) { // Blue
@@ -62,14 +56,15 @@ public class level1 implements levelStrategy{
 			mapGrid[keyX][keyY] = keyColor;
 			
 			Rectangle key = new Rectangle(keyX*scale,keyY*scale,scale,scale);
-			Rectangle wall = new Rectangle(12*scale,3*scale,scale,scale); // Change keyX and keyY
-			
 			key.setFill(new ImagePattern(keyImage));
+			key.setStroke(Color.BLACK);
+			root.add(key);
+			
+			Rectangle wall = new Rectangle(12*scale,3*scale,scale,scale); // Change keyX and keyY
 			wall.setFill(new ImagePattern(wallImage));
 			wall.setStroke(Color.BLACK);
-			key.setStroke(Color.BLACK);
 			root.add(wall);
-			root.add(key);
+			
 			keyCount -= 1;
 		}
 		
@@ -84,7 +79,7 @@ public class level1 implements levelStrategy{
 			}
 			
 			Rectangle chip = new Rectangle(chipX*scale,chipY*scale,scale,scale);
-			mapGrid[chipX][chipY] = 6; // 6 for chip
+			mapGrid[chipX][chipY] = 6; // 6 for chipItem
 			chipItemImage = new Image("images//chip//textures//chipItem.png");
 			chip.setFill(new ImagePattern(chipItemImage));
 			chip.setStroke(Color.BLACK);

@@ -11,5 +11,4 @@ public class level2 implements levelStrategy{
 		// TODO Auto-generated method stub
 		
 	}
-
 }

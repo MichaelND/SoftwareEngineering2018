@@ -49,14 +49,16 @@ public class Main extends Application {
 		mapGrid = map.createMap(keyCount, chipCount, root.getChildren(), scale, dimensions); //Specify number of keys and chips (keys must be less than 7)
 		scene = new Scene(root,borderSize,borderSize);
 		
+		//Create backpack
+		backpack = new Backpack(chipCount);
+				
 		//Create chip
-		chip = new Chip(dimensions, borderSize, map.mapGrid);
+		chip = new Chip(dimensions, borderSize, map.mapGrid, backpack);
 		chip.getImageView().setX(chip.getChipLocation().x * scale);
 		chip.getImageView().setY(chip.getChipLocation().y * scale);
 		root.getChildren().add(chip.chipImageView);
 		
-		//Create backpack
-		backpack = new Backpack(chipCount);
+		//Add observers
 		chip.addObserver(backpack);
 		backpack.addObserver(map);
 		
@@ -96,9 +98,11 @@ public class Main extends Application {
 				}
 				chip.getImageView().setX(chip.getChipLocation().x * scale);
 				chip.getImageView().setY(chip.getChipLocation().y * scale);
-				System.out.println("chip move");
 				chip.notifyObservers();
-//				Back)pack.updateBackpack();
+				
+				//Used to update tile underneath without removing chip from image
+				root.getChildren().remove(chip.getImageView());
+				root.getChildren().add(chip.getImageView());
 			}
 		});
 	}

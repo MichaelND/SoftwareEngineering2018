@@ -2,12 +2,12 @@ package application;
 
 import java.util.Observable;
 import java.util.Observer;
-import java.util.Random;
 
 import src.edu.nd.se2018.homework.hwk6.src.levels.levelStrategy;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
@@ -25,6 +25,7 @@ public class Map implements Observer{
 	ObservableList<Node> Root;
 	int Scale;
 	int Dimensions;
+	ImageView tileImageView;
 	
 	public void drawMap(ObservableList<Node> root, int scale, int dimensions) {
 		Root = root;
@@ -41,12 +42,13 @@ public class Map implements Observer{
 					mapGrid[x][y] = 1; //1 represents border
 				}
 				else {
-					tileImage = new Image("images//chip//textures//BlankTile.png");
+					tileImage = new Image("images//chip//textures//BlankTile.png",scale,scale,true,true);
 					rect.setFill(new ImagePattern(tileImage));
 					mapGrid[x][y] = 0; //0 represents blank tile
 				}
+
 				rect.setStroke(Color.BLACK);
-				root.add(rect);
+				root.add(rect);	
 			}
 		}
 	}
@@ -57,19 +59,17 @@ public class Map implements Observer{
 		this.levelStrat = strategy;
 	}
 	@Override
-	public void update(Observable o, Object arg) { // Set the tile to blank tile
+	public void update(Observable o, Object arg) { // Set the tile to blank tile when backpack gets a key or chip or enters wall
 		if (o instanceof Backpack){
-			System.out.println("Map updated");
 			int x = ((Backpack)o).chipLocation.x;
 			int y = ((Backpack)o).chipLocation.y;
-			Rectangle rect = new Rectangle(x*Scale,y*Scale,Scale,Scale);
-			tileImage = new Image("images//chip//textures//BlankTile.png");
+			Rectangle rect = new Rectangle(x*Scale, y*Scale, Scale, Scale);
+			tileImage = new Image("images//chip//textures//BlankTile.png",Scale,Scale,true,true);
 			rect.setFill(new ImagePattern(tileImage));
-			mapGrid[x][y] = 0;
 			rect.setStroke(Color.BLACK);
 			Root.add(rect);
+			mapGrid[x][y] = 0;
 		}
-		
 	}
 }
 
