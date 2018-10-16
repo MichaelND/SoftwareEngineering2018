@@ -88,6 +88,9 @@ public class Main extends Application {
 						chip.goSouth();
 						chip.setImageView("South");
 						break;
+					case ESCAPE:
+						Stage sb = (Stage)scene.getWindow();//use any one object
+				        sb.close();
 					default:
 						break;
 				}
@@ -101,7 +104,9 @@ public class Main extends Application {
 				
 				if (backpack.winLevel == true) { // Move to Level 2
 					Stage Stage2 = new Stage();
+					Stage sb = (Stage)scene.getWindow();//use any one object
 					root.getChildren().clear();
+					sb.close();
 					createMap(new level2(), Stage2, 2, 3, 20);
 				}
 			}
